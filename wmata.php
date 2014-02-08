@@ -30,7 +30,7 @@ function grabIt($serial) {
 
     if ($min == 'BRD' || $min == 'ARR') {
       switch ($train->Line) {
-        case 'RD';
+        case 'RD':
           $line  = 49;
           break;
         case 'BL':
