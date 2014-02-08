@@ -3,12 +3,14 @@ require 'php-serial/php_serial.class.php';
 
 $serial = new \phpSerial\phpSerial;
 $serial->phpSerial();
+//chmod 777 /dev/ttyACM0
 $serial->deviceSet('/dev/ttyACM0');
 $serial->confBaudRate(9600);
 $serial->confParity("none");
 $serial->confCharacterLength(8);
 $serial->confStopBits(1);
 $serial->deviceOpen();
+//wait for board to boot
 sleep(5);
 
 function grabIt($serial) {
@@ -52,6 +54,7 @@ function grabIt($serial) {
     }
   }
   $serial->sendMessage(chr($line));
+  //sleep ten seconds then call aagain
   sleep(10);
   grabIt($serial);
 }
